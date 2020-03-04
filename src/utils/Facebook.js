@@ -7,7 +7,7 @@ export default class Example extends Component {
   render() {
     return (
       <FacebookProvider appId="130487101715335">
-        <Share href="https://taeho.netlify.com/">
+        <Share href={this.props.href}>
           {({ handleClick, loading }) => (
             <Button disabled={loading} onClick={handleClick}></Button>
           )}

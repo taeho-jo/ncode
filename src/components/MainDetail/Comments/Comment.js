@@ -12,10 +12,10 @@ const Comment = () => {
 
   return useObserver(() => {
     const addReply = id => {
-      const a = commentsStore.Data.filter(
+      const commnetReply = commentsStore.Data.filter(
         el => parseInt(el.id) === parseInt(id)
       );
-      setReply(a[0].id);
+      setReply(commnetReply[0].id);
       if (id === reply) {
         setReply(null);
       }
@@ -30,7 +30,7 @@ const Comment = () => {
           </NameBox>
           <Contents>{el.comment}</Contents>
           <Button onClick={() => addReply(el.id)}>
-            <Img src={arrow} alt="dd" />
+            <Img src={arrow} alt="arrow" />
             답글
           </Button>
           {reply === el.id ? <CommentsBox /> : ""}
@@ -39,13 +39,13 @@ const Comment = () => {
           ? el.replies.list.map(el => (
               <Container key={el.id} margin="10px">
                 <NameBox>
-                  <Img src={arrow1} alt="dd" />
+                  <Img src={arrow1} alt="arrow1" />
                   <Name>{el.userName}</Name>
                   <Date>{el.createdAt.slice(0, 10)}</Date>
                 </NameBox>
                 <Contents>{el.comment}</Contents>
                 <Button>
-                  <Img src={arrow} alt="dd" />
+                  <Img src={arrow} alt="arrow" />
                   답글
                 </Button>
               </Container>

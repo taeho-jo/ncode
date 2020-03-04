@@ -53,7 +53,7 @@ const MainDetail = ({ match, history }) => {
             />
             <Contents>{Data.text}</Contents>
             {tags}
-            <Facebook />
+            <Facebook href={window.location.href} />
             <TextAreaBox>COMMENTS</TextAreaBox>
             <CommentsBox />
             {match.params.id === "448" ? <Comment /> : null}

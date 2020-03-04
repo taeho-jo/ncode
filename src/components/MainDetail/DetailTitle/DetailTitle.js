@@ -4,7 +4,7 @@ import styled from "styled-components";
 import bigheart from "../../../images/bigheart.png";
 import fillheart from "../../../images/fillheart.png";
 
-const DetailTitle = ({ title, border, onClick, src, heartNum }) => {
+const DetailTitle = ({ title, border, onClick, heartNum }) => {
   return (
     <Div>
       <Title>{title}</Title>
