@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 목표
 
-## Available Scripts
+### 1. 피드목록 & 피드상세 페이지
 
-In the project directory, you can run:
+### 2. 좋아요 & 좋아요 취소 기능
 
-### `yarn start`
+### 3. 임의 피드에 댓글 표시
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 4. facebook 링크 공유
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# 사용기술
 
-### `yarn test`
+### React.js / mobX / styled-components
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Issue
 
-### `yarn build`
+### 1. mock data의 정보를 mobx에서 관리
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### data의 정보를 mobx에서 관리한 이유
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- 피드목록 페이지에 접속하게 되면, mobx store에 피드와 댓글에 대한 data의 정보를 저장하게 된다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 실제 API통신을 하는 상황이 아니였고, 피드목록 페이지에서 피드상세 페이지를 이동할 때 상태 유지가 필요했기 때문입니다.
 
-### `yarn eject`
+- 피드상세 페이지에서 좋아요를 눌렀을 때, 좋아요`(likedCount)`가 undefined라면 `likedCount` 칼럼을 추가하여야 했고, 기존에 `likedCount`가 있다면 `likedCount`가 +1이 되거나 -1이 되어야 한다. 그리고 피드목록 페이지로 돌아갔을 때, 좋아요가 눌러진 피드의 좋아요수가 표시되어야 한다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### hooks에서 mobx 사용하기
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- class형 components에서 decorator를 사용할 수 있는데, hooks를 사용하였고, mobx에서 기본적으로 지원하는 `useObserver`를 이용하였다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- mobx store를 최상위 index.js에서 provider를 이용하지 않고, store 자체를 import하여 사용하였다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 2. 피드목록 페이지에서 피드상세 페이지로의 이동
 
-## Learn More
+#### id를 이용하여 filter( )
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 피드목록에서 피드상세 페이지로 이동할 때, 해당 피드의 id를 넘겨주고, 같은 id인 피드의 데이터만 state로 따로 관리하게 한다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. 좋아요(likedCount)
 
-### Code Splitting
+#### likedCount의 undefined
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- 기존에 좋아요가 없다면, likedCount는 undefined이다. 처음 랜더링 할 때에는, undefined라면 0, 기존에 likedCount가 있다면 해당 likedCount를 랜더링하게 한다.
 
-### Analyzing the Bundle Size
+- mobx store에 저장된 Data에서 좋아요의 상태를 알고 있어야 함으로 좋아요가 클릭되었을 때의 상태를 mobx store에서 관리한다.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+- Data.like는 좋아요가 눌러져 있는 상태인지 아닌지 확인하는 컬럼이다. Data.like는 기존 mock data에 없는 칼럼이어서 만들어주었다.
 
-### Making a Progressive Web App
+- Data.like가 undefined 또는 false일 때, likedCount역시 undefined라면 likedCount와 like의 칼럼을 추가해주고, likedCount가 있다면 +1을 해주고 like를 true로 바꾼다. 기존에 좋아요가 눌러져 like가 있다면, likeCount에서 -1을 하고 like를 false로 바꾼다.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### 4. facebook shareLink
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- facebook 공유하기 기능의 경우 `npm install react-facebook` 을 하여 구현하였다.

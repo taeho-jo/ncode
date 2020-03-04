@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import MainFeed from "../components/MainFeed";
+import MainFeeds from "../components/MainFeeds";
 
-const Feed = () => {
+const Feeds = () => {
   return (
     <ContainerBox>
       <Container>
-        <MainFeed />
+        <MainFeeds />
       </Container>
     </ContainerBox>
   );
 };
 
-export default Feed;
+export default Feeds;
 
 const ContainerBox = styled.main`
   display: flex;

@@ -11,7 +11,7 @@ import Icon1 from "../../images/chat.png";
 import Icon2 from "../../images/share.png";
 import Icon3 from "../../images/heart1.png";
 
-const MainFeed = ({ history }) => {
+const MainFeeds = ({ history }) => {
   useEffect(() => {
     if (!feedStore.Data[0]) {
       feedStore.fecthData();
@@ -51,7 +51,7 @@ const MainFeed = ({ history }) => {
   );
 };
 
-export default withRouter(MainFeed);
+export default withRouter(MainFeeds);
 
 const ContentContainer = styled.div`
   width: 100%;
