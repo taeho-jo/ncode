@@ -51,3 +51,4 @@
 ### 4. facebook shareLink
 
 - facebook 공유하기 기능의 경우 `npm install react-facebook` 을 하여 구현하였다.
+- window.location.herf를 이용하여 현재 페이지를 공유하려고 하였으나, localhost는 유효하지 않은 URL이라고하여, 포트롤리오 사이트를 공유할 수 있도록 설정하였습니다.
