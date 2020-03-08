@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import MainDetail from "../components/MainDetail";
+import Layout from "../components/Layout/Layout";
 
-const DetailFeed = () => {
+const FeedDetail = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0
+    });
+  }, []);
+
   return (
     <Container>
+      <Layout />
       <ContainerBox>
         <MainDetail />
       </ContainerBox>
@@ -12,13 +21,12 @@ const DetailFeed = () => {
   );
 };
 
-export default DetailFeed;
+export default FeedDetail;
 
 const Container = styled.main`
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  padding: 30px 0;
+  flex-direction: column;
 `;
 
 const ContainerBox = styled.article`

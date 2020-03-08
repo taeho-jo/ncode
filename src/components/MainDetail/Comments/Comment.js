@@ -44,10 +44,6 @@ const Comment = () => {
                   <Date>{el.createdAt.slice(0, 10)}</Date>
                 </NameBox>
                 <Contents>{el.comment}</Contents>
-                <Button>
-                  <Img src={arrow} alt="arrow" />
-                  답글
-                </Button>
               </Container>
             ))
           : null}

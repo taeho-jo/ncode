@@ -5,7 +5,7 @@ import facebookIcon from "../images/facebook.png";
 
 export default class Example extends Component {
   render() {
-    console.log(window.location.href, "재영이");
+    // console.log(window.location.href, "재영이");
     return (
       <FacebookProvider appId="130487101715335">
         <Share href={window.location.href}>
